@@ -1,0 +1,31 @@
+﻿@model List<User>
+
+<div class="row">
+    <div class="col-12">
+        <table class="table">
+            <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Password</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var data in Model)
+            {
+                <tr>
+                    <td>@data.Username</td>
+                    <td>@data.Name</td>
+                    <td>@data.Password</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = data.Id})">
+                            Edit
+                        </a>
+
+                        <a href="@Url.Action("Delete", new { id = data.Id})">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

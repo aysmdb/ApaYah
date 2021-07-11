@@ -1,0 +1,26 @@
+﻿@model Sekolah
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-chart-pie mr-1"></i>
+            Ini Judul
+        </h3>
+
+    </div><!-- /.card-header -->
+    <div class="card-body">
+        <h1 class="display-4">
+            <span>@ViewData["Greeting"]</span> @Model.Nama
+        </h1>
+        <a href="@Url.Action("Register", "User")" class="btn btn-primary">
+            Klik disini untuk register
+        </a>
+
+        <a href="@Url.Action("Logout", "Account")" class="btn btn-danger">
+            Logout
+        </a>
+    </div><!-- /.card-body -->
+</div>

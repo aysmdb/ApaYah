@@ -1,0 +1,35 @@
+﻿@model List<Roles>
+@{
+
+}
+
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Register" method="POST">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="Username" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="text" name="Password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Role</label>
+                <select name="Role" class="form-control">
+                    @foreach (var role in Model)
+                    {
+                        <option value="@role.Id">@role.Name</option>    
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
