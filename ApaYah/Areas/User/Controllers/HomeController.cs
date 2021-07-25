@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ApaYah.Areas.User.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     [Area("User")]
     public class HomeController : Controller
     {

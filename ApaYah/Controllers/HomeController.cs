@@ -22,16 +22,7 @@ namespace ApaYah.Controllers
 
         public IActionResult Index()
         {
-            Sekolah sekolah = new Sekolah() { 
-                Id = 1,
-                Nama = "SD Itulah",
-                Alamat = "Disana",
-                Telepon = "08123141241"
-            };
-
-            ViewData["Greeting"] = "Selamat sore";
-
-            return View(sekolah);
+            return Redirect("/user/home");
         }
 
         public IActionResult About()
