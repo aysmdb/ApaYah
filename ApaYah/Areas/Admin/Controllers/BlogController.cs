@@ -1,5 +1,7 @@
 ﻿using ApaYah.Models;
+using ApaYah.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,10 +15,12 @@ namespace ApaYah.Areas.Admin.Controllers
     public class BlogController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly FileService _file;
 
-        public BlogController(AppDbContext c)
+        public BlogController(AppDbContext c, FileService f)
         {
             _context = c;
+            _file = f;
         }
 
         public IActionResult Index()
@@ -32,11 +36,13 @@ namespace ApaYah.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([Bind("Title,Content,Author,IsPublished")] Blog blog)
+        public async Task<IActionResult> Create([Bind("Title,Content,Author,IsPublished,Image")] Blog blog,
+            IFormFile Image)
         {
             if (ModelState.IsValid)
             {
                 blog.CreatedDate = DateTime.Now;
+                blog.Image = await _file.SaveFile(Image);
                 _context.Add(blog);
                 _context.SaveChanges();
 

@@ -3,14 +3,16 @@ using System;
 using ApaYah.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApaYah.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210725103747_blog_validation")]
+    partial class blog_validation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,9 +33,6 @@ namespace ApaYah.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("text");
 
                     b.Property<bool>("IsPublished")
                         .HasColumnType("tinyint(1)");

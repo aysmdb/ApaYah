@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApaYah.Helper;
 
 namespace ApaYah.Areas.User.Controllers
 {
@@ -22,6 +23,8 @@ namespace ApaYah.Areas.User.Controllers
         public IActionResult Index()
         {
             var data = _context.Blog.Where(x => x.IsPublished).ToList();
+
+            var username = User.GetUsername();
 
             return View(data);
         }

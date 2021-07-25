@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ApaYah.Models;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
+using ApaYah.Services;
 
 namespace ApaYah
 {
@@ -37,6 +38,8 @@ namespace ApaYah
                 });
 
             services.AddControllersWithViews();
+
+            services.AddTransient<FileService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

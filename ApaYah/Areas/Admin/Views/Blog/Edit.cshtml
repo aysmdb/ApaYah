@@ -25,7 +25,16 @@
 
             <div class="form-group">
                 <label>Author</label>
-                <input type="text" class="form-control" name="Author" value="@Model.Author" />
+                <input type="text" class="form-control" asp-for="Author" />
+            </div>
+
+            <div class="form-group">
+                <img src="/@Model.Image" />
+            </div>
+
+            <div class="form-group">
+                <label>Image</label>
+                <input type="file" class="form-control" name="Image" />
             </div>
 
             <div class="form-group form-check">
