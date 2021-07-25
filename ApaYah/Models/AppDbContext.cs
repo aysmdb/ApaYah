@@ -16,5 +16,6 @@ namespace ApaYah.Models
 
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<Blog> Blog { get; set; }
     }
 }

@@ -1,0 +1,45 @@
+﻿@model List<Blog>
+
+@{
+
+}
+
+<div class="card">
+    <div class="card-header">
+        <h6>Blog</h6>
+    </div>
+    <div class="card-body">
+        <a href="blog/create" class="btn btn-success">Create Post</a>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Created At</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td>@i.Title</td>
+                    <td>@i.Author</td>
+                    <td>@i.CreatedDate.ToShortDateString()</td>
+                    <td>
+                        @if (i.IsPublished)
+                        {
+                            <span>Published</span>
+                        }
+                        else
+                        {
+                            <span>Not Published</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="blog/edit/@i.Id" class="btn btn-link">Edit</a>
+                        <a href="delete/edit/@i.Id" class="btn btn-link">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

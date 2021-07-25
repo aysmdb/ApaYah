@@ -1,0 +1,52 @@
+﻿@{
+}
+
+<div class="card">
+    <div class="card-header">
+        <h6>Create Post</h6>
+    </div>
+    <div class="card-body">
+        <form asp-action="create" method="post">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" name="Title" />
+            </div>
+
+            <div class="form-group">
+                <label>Content</label>
+                <div id="editor"></div>
+                <textarea class="d-none" id="cc" name="Content"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Author</label>
+                <input type="text" class="form-control" name="Author" />
+            </div>
+
+            <div class="form-group form-check">
+                <input type="checkbox" value="true" checked name="IsPublished" class="form-check-input" id="IsPublished">
+                <label class="form-check-label" for="IsPublished">Publish?</label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var quill = new Quill('#editor', {
+                modules: { toolbar: true },
+                theme: 'snow'
+            });
+
+            quill.on('text-change', function (delta, oldDelta, source) {
+                $("#cc").val(quill.getText())
+                console.log(quill.getText())
+            });
+        });
+    </script>
+}

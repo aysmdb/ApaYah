@@ -1,0 +1,58 @@
+﻿@model Blog
+@{
+    var ch = Model.IsPublished ? "checked" : "";
+    var iss = Model.IsPublished.ToString().ToLower();
+}
+
+<div class="card">
+    <div class="card-header">
+        <h6>Edit Post</h6>
+    </div>
+    <div class="card-body">
+        <form asp-action="edit" method="post">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" name="Title" value="@Model.Title" />
+            </div>
+
+            <div class="form-group">
+                <label>Content</label>
+                <div id="editor">
+                    @Html.Raw(Model.Content)
+                </div>
+                <textarea class="d-none" id="cc" name="Content">@Model.Content</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Author</label>
+                <input type="text" class="form-control" name="Author" value="@Model.Author" />
+            </div>
+
+            <div class="form-group form-check">
+                <input type="checkbox" value="@iss" @ch name="IsPublished" class="form-check-input" id="IsPublished">
+                <label class="form-check-label" for="IsPublished">Publish @Model.IsPublished ?</label>
+            </div>
+
+            <div class="form-group">
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var quill = new Quill('#editor', {
+                modules: { toolbar: true },
+                theme: 'snow'
+            });
+
+            quill.on('text-change', function (delta, oldDelta, source) {
+                $("#cc").val(quill.getText())
+                console.log(quill.getText())
+            });
+        });
+    </script>
+}
