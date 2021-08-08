@@ -12,5 +12,106 @@
     </div><!-- /.card-header -->
     <div class="card-body">
         <h2>Ini Area Admin</h2>
+        <div id="listusername">
+
+        </div>
+
+        <div style="background: aqua" id="oneuser">
+
+        </div>
     </div><!-- /.card-body -->
 </div>
+
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            var obj = {
+                id: "id",
+                name: "saha"
+            }
+
+            var arrayobj = [
+                {
+                    id: "id",
+                    name: "saha"
+                },
+                {
+                    id: "id",
+                    name: "saha"
+                }
+            ]
+
+            $.ajax({
+                method: "GET",
+                url: "/api/user/listuser",
+                success: function(resp) {
+                    resp.forEach(i => {
+                        $("#listusername").append(`<p>${i.name}</p>`)
+                    })
+                },
+                error: function(err) {
+                    console.log(err)
+                }
+            })
+
+            $.ajax({
+                method: "GET",
+                url: "/api/user/oneuser/1",
+                success: function(resp) {
+                    $("#oneuser").append(`<p>${resp.name}</p>`)
+                },
+                error: function(err) {
+                    console.log(err)
+                }
+            })
+
+            var userobj = {
+                id: 1,
+                username: "editdariapi",
+                name: "Edit Dari Api",
+                password: "dariapi123"
+            }
+
+            //$.ajax({
+            //    method: "POST",
+            //    url: "/api/user/createuser",
+            //    data: JSON.stringify(userobj),
+            //    dataType: "json",
+            //    contentType: "application/json",
+            //    success: function (resp) {
+            //        alert("berhasil tambah user")
+            //    },
+            //    error: function (err) {
+            //        alert(err)
+            //    }
+            //})
+
+            //$.ajax({
+            //    method: "PUT",
+            //    url: "/api/user/updateuser",
+            //    data: JSON.stringify(userobj),
+            //    dataType: "json",
+            //    contentType: "application/json",
+            //    success: function (resp) {
+            //        alert("berhasil edit user")
+            //    },
+            //    error: function (err) {
+            //        alert(err)
+            //    }
+            //})
+
+            //$.ajax({
+            //    method: "DELETE",
+            //    url: "/api/user/deleteuser/2",
+            //    dataType: "json",
+            //    contentType: "application/json",
+            //    success: function (resp) {
+            //        alert("berhasil hapus user")
+            //    },
+            //    error: function (err) {
+            //        alert(err)
+            //    }
+            //})
+        })
+    </script>
+}
