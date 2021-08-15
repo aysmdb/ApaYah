@@ -23,6 +23,34 @@
         }
 
         <!-- Pager-->
-        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+        <div class="d-flex justify-content-end mb-4">
+            <button type="button" id="email-btn" class="btn btn-success">
+                Kirim Email
+            </button>
+        </div>
+        <div class="d-flex justify-content-end mb-4">
+            <a class="btn btn-primary text-uppercase" href="#!">Older Posts →
+            </a>
+        </div>
     </div>
 </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function() {
+            $("#email-btn").click(function(e) {
+                $.ajax({
+                    method: "GET",
+                    url: "/api/user/sendemail",
+                    success: function(resp) {
+                        alert("Berhasil kirim email")
+                    },
+                    error: function (err) {
+                        alert("Gagal kirim email")
+                        console.log(err)
+                    }
+                })
+            })
+        })
+    </script>
+}
